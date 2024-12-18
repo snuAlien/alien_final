@@ -12,7 +12,7 @@ let classFont;
 let mapoFont;
 let alienFont;
 
-let stage = 17; // 전체 스테이지
+let stage = 0; // 전체 스테이지
 let startFrame = 0;
 let ufo;
 let choice_00 = true;
@@ -1516,7 +1516,7 @@ function stage_28(){ //카메라
 }
 
 function stage_29(){
-  console.log(moveTime);
+  //console.log(moveTime);
   //if (!startFrame) startFrame = frameCount; // 시작 프레임 기록
 
   background(0);
@@ -1567,6 +1567,7 @@ function stage_29(){
     image(backgroundImgs[10], 0, 0, 720, 480);
 
     textSetting(88, 235, 255, classFont);
+    text_29_0.speedUp();
     text_29_0.update();
     text_29_0.display(110, 385);
 
