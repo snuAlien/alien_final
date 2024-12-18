@@ -27,7 +27,7 @@ class Hunter{ // 헌터
     display(){
       noStroke();
       imageMode(CENTER,CENTER)
-      fill(50);
+      fill(255,255,0,150);
       ellipse(this.x,this.y,this.r);
       image(helperImg,this.x,this.y,this.r-2,this.r-2);
     }
