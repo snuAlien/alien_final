@@ -58,6 +58,10 @@ class TypingAnimation {
       }
     }
 
+    speedUp() {
+      this.speed = 50;
+    }
+
     complete() {
         // 애니메이션 즉시 완료
         this.displayedText = this.text;
