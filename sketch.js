@@ -1576,7 +1576,7 @@ function stage_29(){
     text('MISSION COMPLETE', width / 2, height * 2 / 5);
   }
 
-  if (moveTime > 450) {
+  if (moveTime > 500) {
     moveTime = 0;
     startMillis = millis();
     stage = 30;
@@ -3709,6 +3709,7 @@ function keyPressed() {
         if(!text_29_0.check()) text_29_0.complete();
         else if(text_29_0.check()) {
           moveTime = 0;
+          startMillis = millis();
           stage = 30;
         }
       }
