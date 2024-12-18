@@ -59,7 +59,7 @@ class TypingAnimation {
     }
 
     speedUp() {
-      this.speed = 50;
+      this.speed = 2;
     }
 
     complete() {
