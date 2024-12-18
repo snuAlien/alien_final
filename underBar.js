@@ -36,18 +36,18 @@ class underBar{ // 화면하단 상태창..
       imageMode(CENTER);
   
       fill(0,150);
-      rect(580,455,40);
+      // rect(580,455,40);
       image(animals[stage],580,455,35,35) // 메인 초상화
       textSize(30);
       text("X"+howMany[stage-1],625,453); // 몇마리잡앗는지
   
       
-      rect(660,443,18); 
+      //rect(660,443,18); 
       image(animals[stage%3+1],660,443,15,15);// 서브 초상화1
       textSize(16);
       text("X"+howMany[((stage-1)%3+1)%3],685,441); // 몇마리잡앗는지 와 % 쓴거 좀 똑똑하다
   
-      rect(660,467,18); 
+      //rect(660,467,18); 
       image(animals[(stage+1)%3+1],660,467,15,15);// 서브 초상화2
       text("X"+howMany[((stage-1)%3+2)%3],685,465); // 몇마리잡앗는지
   
