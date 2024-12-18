@@ -12,7 +12,7 @@ let classFont;
 let mapoFont;
 let alienFont;
 
-let stage = 0; // 전체 스테이지
+let stage = 17; // 전체 스테이지
 let startFrame = 0;
 let ufo;
 let choice_00 = true;
@@ -2989,7 +2989,7 @@ function nextStage() {
   else if (huntStage == 5 && sheeps.length == 0 && stageFrame > 0) huntStage++;
   else if (huntStage == 8 && hollans.length == 0 && stageFrame > 0) huntStage++;
 
-  if (huntStage == 8 && stageFrame >= 10000 && gauge < 550) huntStage = 10;
+  if (huntStage == 8 && stageFrame >= 1000 && gauge < 550) huntStage = 10;
   
   if (gauge == 550) huntStage = 9;
 
@@ -3048,7 +3048,7 @@ function net(){
     fill(255,0,0);
     arc(0,0,30,30,0,angleFill,PIE);
 
-    fill(0);
+    fill(255,255,0,150);
     ellipse(0,0,25);
     image(helperImg,0,0,20,20);
   }
