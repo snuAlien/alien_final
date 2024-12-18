@@ -12,7 +12,7 @@ let classFont;
 let mapoFont;
 let alienFont;
 
-let stage = 0; // 전체 스테이지
+let stage = 17; // 전체 스테이지
 let startFrame = 0;
 let ufo;
 let choice_00 = true;
@@ -350,6 +350,9 @@ function draw() {
       break;
     case 500:
       stage_500();
+      break;
+    case 600:
+      stage_600();
       break;
   }
 }
@@ -1589,7 +1592,7 @@ function stage_30(){
   image(backgroundImgs[11],0,0,720,480);
 
   if (millis()-startMillis>30000) {
-    stage = 500;
+    stage = 600;
   } else {
     fill(255);
     textSize(40);
@@ -3743,7 +3746,7 @@ function keyPressed() {
       else if (text_300_0.check()){
         moveTime = 0;
         bgm1 = 0;
-        stage = 600;
+        stage = 500;
         } 
       }
   }
