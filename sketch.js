@@ -107,6 +107,8 @@ let bgm1 = 0;
 let bgm2 = 0;
 let bgm3 = 0;
 
+let startMillis = 0;
+
 function preload() {
   for(let i=0; i<17; i++){
     bgms[i] = loadSound('sound/sound'+i+'.mp3');
@@ -525,7 +527,7 @@ function stage_03() { // 삐빼삐 등장
     imageMode(CENTER);
     image(helperImg,0,0,100/50*moveTime,80/50*moveTime);
     pop();
-  } else {
+  } else if (moveTime >= 50){
     imageMode(CENTER);
     image(helperImg,360,240,100,100);
 
@@ -703,7 +705,7 @@ function stage_08() { // ZH-1129 도착
   } else if (moveTime < 100) {
     image(backgroundImgs[2],360,240,720,480);
     textStage = 0;
-  } else {
+  } else if (moveTime >= 100){
     image(backgroundImgs[2],360,240,720,480);
 
     textSetting(146,200,81,mapoFont);
@@ -1572,6 +1574,7 @@ function stage_29(){
 
   if (moveTime > 380) {
     moveTime = 0;
+    startMillis = millis();
     stage = 30;
     //stageStartFrame = null; // 다음 스테이지를 위해 초기화
   }
@@ -1585,7 +1588,7 @@ function stage_30(){
 
   image(backgroundImgs[11],0,0,720,480);
 
-  if(moveTime>600){
+  if (millis()-startMillis>30000) {
     stage = 500;
   } else {
     fill(255);
@@ -1594,6 +1597,17 @@ function stage_30(){
     textFont(classFont);
     text(30-Math.floor(moveTime/20),660,50);
   }
+
+
+  // if(moveTime>600){
+  //   stage = 500;
+  // } else {
+  //   fill(255);
+  //   textSize(40);
+  //   textAlign(CENTER,CENTER);
+  //   textFont(classFont);
+  //   text(30-Math.floor(moveTime/20),660,50);
+  // }
   moveTime++;  
 }
 
@@ -1702,7 +1716,7 @@ function stage_300(){
   text_300_0.display(110,382);
   if(text_03_4.check()){
     bgms[4].stop();
-    bgm1 = 0;
+    //bgm1 = 0;
     }
       
 }
@@ -1727,6 +1741,20 @@ function stage_500() {
   //text('현서야 여기서 잠들면 입돌아가 일어나..',680,470);
 }
 
+function stage_600() {
+  fill(0);
+  rectMode(CORNER);
+  rect(0,0,720,480);
+
+  fill('#58ebff')
+
+  push();
+  textSize(50);
+  textFont(classFont);
+  textAlign(CENTER);
+  text('THE END',360,240);
+  pop();
+}
 
 function onMove(time) {
   fill(0);
@@ -1979,7 +2007,7 @@ function caesarCreate() {
    caesarBoxes.push({
     x: 620,
     y: 300,
-    value: ""
+    value: "r"
    });
    caesarBoxes.push({
     x: 670,
@@ -3407,6 +3435,7 @@ function keyPressed() {
       if (key == ' ') {
         if (letterStage == 3 && !text_02.check()) text_02.complete();
         else if (letterStage == 3 && text_02.check()) {
+          bgm1 = 0;
           startFrame = frameCount;
           moveTime = 0;
           stage = 3;
@@ -3504,13 +3533,13 @@ function keyPressed() {
         }
       }
       break;
-    case 12:
+    case 12: // 옷입히기
       if (key == ' ') {
         startFrame = frameCount;
         stage = 13;
       }
       break;
-    case 13:
+    case 13: // 사정설명
       if (key == ' ') {
         if (textStage == 0 && !text_13_0.check()) text_13_0.complete();
         else if (textStage == 0 && text_13_0.check()) textStage = 2;
@@ -3553,7 +3582,7 @@ function keyPressed() {
         }
       }
       break;
-    case 16:
+    case 16: // 삐용삐용 여왕 배고파
       if (key == ' ') {
         // if (textStage == 0 && !text_16_0.check()) text_16_0.complete();
         // else if (textStage == 0 && text_16_0.check()) textStage = 1;
@@ -3568,7 +3597,7 @@ function keyPressed() {
         }
       }
       break;
-    case 17:
+    case 17: // 사냥 설명
       if (key == ' ') {
         if (textStage == 0 && !text_17_0.check()) text_17_0.complete();
         else if (textStage == 0 && text_17_0.check()) stage = 18;
@@ -3578,19 +3607,19 @@ function keyPressed() {
       if (key == ' ') {
         if (huntStage == 0 && !text_18_0.check()) text_18_0.complete();
         else if (huntStage == 0 && text_18_0.check()) huntStage++;
-        // else if (huntStage == 1 && !text_18_1.check()) text_18_1.complete();
-        // else if (huntStage == 1 && text_18_1.check()) huntStage++;
-        else if (huntStage == 1) huntStage++;
+        else if (huntStage == 1 && !text_18_1.check()) text_18_1.complete();
+        else if (huntStage == 1 && text_18_1.check()) huntStage++;
+        //else if (huntStage == 1) huntStage++;
         else if (huntStage == 3 && !text_18_2.check()) text_18_2.complete();
         else if (huntStage == 3 && text_18_2.check()) huntStage++;
-        // else if (huntStage == 4 && !text_18_3.check()) text_18_3.complete();
-        // else if (huntStage == 4 && text_18_3.check()) huntStage++;
-        else if (huntStage == 4) huntStage++;
+        else if (huntStage == 4 && !text_18_3.check()) text_18_3.complete();
+        else if (huntStage == 4 && text_18_3.check()) huntStage++;
+        //else if (huntStage == 4) huntStage++;
         else if (huntStage == 6 && !text_18_4.check()) text_18_4.complete();
         else if (huntStage == 6 && text_18_4.check()) huntStage++;
-        // else if (huntStage == 7 && !text_18_5.check()) text_18_5.complete();
-        // else if (huntStage == 7 && text_18_5.check()) huntStage++;
-        else if (huntStage == 7) huntStage++;
+        else if (huntStage == 7 && !text_18_5.check()) text_18_5.complete();
+        else if (huntStage == 7 && text_18_5.check()) huntStage++;
+        //else if (huntStage == 7) huntStage++;
       }
       break;
     case 19:
@@ -3690,6 +3719,7 @@ function keyPressed() {
           text_200_0.complete();
         }
         else if (text_200_0.check()){
+          textStage = 0;
           stage = 201;
         }
       }
@@ -3712,7 +3742,8 @@ function keyPressed() {
         }
       else if (text_300_0.check()){
         moveTime = 0;
-        stage = 500;
+        bgm1 = 0;
+        stage = 600;
         } 
       }
   }
